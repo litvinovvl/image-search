@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render App properly 1`] = `
+<div
+  className="wrapper"
+>
+  <SearchBox
+    fullScreen={true}
+    isLoading={false}
+    onSubmit={[Function]}
+  />
+  <ImagesGrid
+    error={false}
+    images={null}
+    isLoading={false}
+  />
+</div>
+`;

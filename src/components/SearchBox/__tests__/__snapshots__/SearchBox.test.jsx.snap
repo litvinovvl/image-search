@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render SearchBox properly 1`] = `
+<form
+  className="search-wrapper"
+  onSubmit={[Function]}
+>
+  <input
+    className="search-input"
+    onChange={[Function]}
+    placeholder="What images would ypu like to see on Pixabay?"
+  />
+  <button
+    className="search-btn"
+    type="submit"
+  >
+    Search
+  </button>
+</form>
+`;
+
+exports[`App should render SearchBox properly when images loaded 1`] = `
+<form
+  className="search-wrapper shrink"
+  onSubmit={[Function]}
+>
+  <input
+    className="search-input"
+    onChange={[Function]}
+    placeholder="What images would ypu like to see on Pixabay?"
+  />
+  <button
+    className="search-btn"
+    type="submit"
+  >
+    Search
+  </button>
+</form>
+`;

@@ -1,0 +1,221 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render ImagesGrid properly initially 1`] = `
+<div
+  className="container hidden"
+>
+  <div
+    className="spinner-wrapper"
+  >
+    <ForwardRef(SvgSadFace)
+      hanging={48}
+      width={48}
+    />
+    No results found!
+  </div>
+  <Modal
+    ariaHideApp={true}
+    bodyOpenClassName="ReactModal__Body--open"
+    className="modal"
+    closeTimeoutMS={0}
+    contentElement={[Function]}
+    isOpen={false}
+    onRequestClose={[Function]}
+    overlayClassName="overlay"
+    overlayElement={[Function]}
+    parentSelector={[Function]}
+    portalClassName="ReactModalPortal"
+    preventScroll={false}
+    role="dialog"
+    shouldCloseOnEsc={true}
+    shouldCloseOnOverlayClick={true}
+    shouldFocusAfterRender={true}
+    shouldReturnFocusAfterClose={true}
+  />
+</div>
+`;
+
+exports[`App should render ImagesGrid properly when error 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="spinner-wrapper"
+  >
+    <ForwardRef(SvgSadFace)
+      hanging={48}
+      width={48}
+    />
+    Something went wrong, try again
+  </div>
+  <Modal
+    ariaHideApp={true}
+    bodyOpenClassName="ReactModal__Body--open"
+    className="modal"
+    closeTimeoutMS={0}
+    contentElement={[Function]}
+    isOpen={false}
+    onRequestClose={[Function]}
+    overlayClassName="overlay"
+    overlayElement={[Function]}
+    parentSelector={[Function]}
+    portalClassName="ReactModalPortal"
+    preventScroll={false}
+    role="dialog"
+    shouldCloseOnEsc={true}
+    shouldCloseOnOverlayClick={true}
+    shouldFocusAfterRender={true}
+    shouldReturnFocusAfterClose={true}
+  />
+</div>
+`;
+
+exports[`App should render ImagesGrid properly when images loaded 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="images-wrapper"
+  >
+    <div
+      key="1"
+      onClick={[Function]}
+      onKeyPress={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      <img
+        alt="tags"
+        className="image"
+        src="test_url"
+      />
+    </div>
+    <div
+      key="2"
+      onClick={[Function]}
+      onKeyPress={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      <img
+        alt="tags"
+        className="image"
+        src="test_url"
+      />
+    </div>
+  </div>
+  <Modal
+    ariaHideApp={true}
+    bodyOpenClassName="ReactModal__Body--open"
+    className="modal"
+    closeTimeoutMS={0}
+    contentElement={[Function]}
+    isOpen={false}
+    onRequestClose={[Function]}
+    overlayClassName="overlay"
+    overlayElement={[Function]}
+    parentSelector={[Function]}
+    portalClassName="ReactModalPortal"
+    preventScroll={false}
+    role="dialog"
+    shouldCloseOnEsc={true}
+    shouldCloseOnOverlayClick={true}
+    shouldFocusAfterRender={true}
+    shouldReturnFocusAfterClose={true}
+  />
+</div>
+`;
+
+exports[`App should render ImagesGrid properly when loading 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="spinner-wrapper"
+  >
+    <ForwardRef(SvgThinkFace)
+      hanging={48}
+      width={48}
+    />
+    Loading
+  </div>
+  <Modal
+    ariaHideApp={true}
+    bodyOpenClassName="ReactModal__Body--open"
+    className="modal"
+    closeTimeoutMS={0}
+    contentElement={[Function]}
+    isOpen={false}
+    onRequestClose={[Function]}
+    overlayClassName="overlay"
+    overlayElement={[Function]}
+    parentSelector={[Function]}
+    portalClassName="ReactModalPortal"
+    preventScroll={false}
+    role="dialog"
+    shouldCloseOnEsc={true}
+    shouldCloseOnOverlayClick={true}
+    shouldFocusAfterRender={true}
+    shouldReturnFocusAfterClose={true}
+  />
+</div>
+`;
+
+exports[`App should render ImagesGrid properly when no images found 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="spinner-wrapper"
+  >
+    <ForwardRef(SvgSadFace)
+      hanging={48}
+      width={48}
+    />
+    No results found!
+  </div>
+  <Modal
+    ariaHideApp={true}
+    bodyOpenClassName="ReactModal__Body--open"
+    className="modal"
+    closeTimeoutMS={0}
+    contentElement={[Function]}
+    isOpen={false}
+    onRequestClose={[Function]}
+    overlayClassName="overlay"
+    overlayElement={[Function]}
+    parentSelector={[Function]}
+    portalClassName="ReactModalPortal"
+    preventScroll={false}
+    role="dialog"
+    shouldCloseOnEsc={true}
+    shouldCloseOnOverlayClick={true}
+    shouldFocusAfterRender={true}
+    shouldReturnFocusAfterClose={true}
+  />
+</div>
+`;
+
+exports[`App should render big image in modal on image click 1`] = `
+<div
+  className="modal-content"
+>
+  <img
+    alt="tags"
+    className="image"
+    src="large_url"
+  />
+</div>
+`;
+
+exports[`App should render big image in modal on image press enter 1`] = `
+<div
+  className="modal-content"
+>
+  <img
+    alt="tags"
+    className="image"
+    src="large_url"
+  />
+</div>
+`;

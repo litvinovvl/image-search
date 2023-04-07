@@ -1,0 +1,22 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb",
+    "react-app",
+    "react-app/jest"
+  ],
+  "plugins": [
+    "react", "react-hooks"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 12
+  },
+  "ignorePatterns": ["src/index.js"],
+  "rules": {
+    "react/jsx-props-no-spreading": "off",
+    "react/forbid-prop-types": "off"
+  }
+}
