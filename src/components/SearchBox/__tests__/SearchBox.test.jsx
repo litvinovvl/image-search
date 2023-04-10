@@ -6,6 +6,7 @@ import SearchBox from '../SearchBox';
 const props = {
   fullScreen: true,
   onSubmit: jest.fn(),
+  toggleFavorites: jest.fn(),
 };
 
 describe('App', () => {
@@ -36,5 +37,14 @@ describe('App', () => {
     form.simulate('submit', { preventDefault: () => {} });
 
     expect(props.onSubmit).toHaveBeenCalledWith(value);
+  });
+
+  it('should open favorites', () => {
+    const component = shallow(<SearchBox {...props} />);
+    const btn = component.find('.favorites-btn');
+
+    btn.simulate('click');
+
+    expect(props.toggleFavorites).toHaveBeenCalled();
   });
 });

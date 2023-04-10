@@ -15,12 +15,36 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 300px;
     grid-gap: 30px;
+
+    & .image-wrapper {
+      position: relative;
+
+      & .image {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
   
-    & .image {
-      cursor: pointer;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+       & .favorite-btn {
+        cursor: pointer;
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        color: #3A71D5;
+
+        &.selected {
+          color: #F1C40F;
+        }
+      }
+
+      & .delete-btn {
+        cursor: pointer;
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        color: #3A71D5;
+      }
     }
   }
 

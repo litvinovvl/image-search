@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const SearchBox = ({ isLoading, fullScreen, onSubmit }) => {
+const SearchBox = ({
+  isLoading, fullScreen, onSubmit, openFavorites,
+}) => {
   const [query, setQuery] = useState('');
 
   const handleSubmit = (e) => {
@@ -24,6 +26,9 @@ const SearchBox = ({ isLoading, fullScreen, onSubmit }) => {
       <button type="submit" className="search-btn">
         {isLoading ? 'Searching' : 'Search'}
       </button>
+      <button type="button" className="favorites-btn" onClick={openFavorites}>
+        Manage Favorites
+      </button>
     </form>
   );
 };
@@ -37,6 +42,7 @@ SearchBox.propTypes = {
   fullScreen: PropTypes.bool,
   isLoading: PropTypes.bool,
   onSubmit: PropTypes.func.isRequired,
+  openFavorites: PropTypes.func.isRequired,
 };
 
 export default SearchBox;

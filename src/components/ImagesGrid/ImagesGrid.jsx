@@ -5,26 +5,24 @@ import ReactModal from 'react-modal';
 
 import { ReactComponent as NoResultsIcon } from '../../assets/images/sad-face.svg';
 import { ReactComponent as LoadingIcon } from '../../assets/images/think-face.svg';
+import { ReactComponent as FavoriteIcon } from '../../assets/images/favorite.svg';
+import { ReactComponent as CrossIcon } from '../../assets/images/cross.svg';
 
 import './style.scss';
 
 const ImagesGrid = ({
-  images, isLoading, error,
+  images, isLoading, error, favoritesView, favorites, saveToFavorites, deleteFromFavorites,
 }) => {
   const [openedImage, setOpenedImage] = useState(null);
   const isModalOpened = Boolean(openedImage);
 
   const handleImgClick = (image) => () => setOpenedImage(image);
 
-  const handleImgKeyPress = (image) => (e) => {
-    if (e.key === 'Enter') setOpenedImage(image);
-  };
-
   const renderImages = () => {
     if (error) {
       return (
         <div className="spinner-wrapper">
-          <NoResultsIcon width={48} hanging={48} />
+          <NoResultsIcon width={48} height={48} />
           Something went wrong, try again
         </div>
       );
@@ -33,7 +31,7 @@ const ImagesGrid = ({
     if (isLoading) {
       return (
         <div className="spinner-wrapper">
-          <LoadingIcon width={48} hanging={48} />
+          <LoadingIcon width={48} height={48} />
           Loading
         </div>
       );
@@ -43,30 +41,53 @@ const ImagesGrid = ({
       return (
         <div className="images-wrapper">
           {
-            images.map((image) => (
-              <div
-                key={image.id}
-                role="button"
-                onClick={handleImgClick(image)}
-                onKeyPress={handleImgKeyPress(image)}
-                tabIndex={0}
-              >
-                <img
-                  src={image.webformatURL}
-                  alt={image.tags}
-                  className="image"
-                />
-              </div>
-
-            ))
+            images.map((image) => {
+              const saved = favorites.find(({ id }) => id === image.id);
+              return (
+                <div
+                  key={image.id}
+                  className="image-wrapper"
+                >
+                  <img
+                    role="button"
+                    onClick={handleImgClick(image)}
+                    tabIndex={0}
+                    src={image.webformatURL}
+                    alt={image.tags}
+                    className="image"
+                  />
+                  {!favoritesView && (
+                    <div
+                      className={
+                        classNames(
+                          'favorite-btn',
+                          { selected: saved },
+                        )
+                      }
+                      onClick={!saved && saveToFavorites(image)}
+                    >
+                      <FavoriteIcon width={24} height={24} />
+                    </div>
+                  )}
+                  {favoritesView && (
+                  <div
+                    className="delete-btn"
+                    onClick={deleteFromFavorites(image.id)}
+                  >
+                    <CrossIcon width={24} height={24} />
+                  </div>
+                  )}
+                </div>
+              );
+            })
           }
         </div>
       );
     }
 
     return (
-      <div className="spinner-wrapper">
-        <NoResultsIcon width={48} hanging={48} />
+      <div className="spinner-wrapper" onClick={saveToFavorites} role="button">
+        <NoResultsIcon width={48} height={48} />
         No results found!
       </div>
     );
@@ -94,7 +115,7 @@ const ImagesGrid = ({
 };
 
 ImagesGrid.defaultProps = {
-  images: null,
+  images: [],
   isLoading: false,
   error: false,
 };
@@ -103,6 +124,10 @@ ImagesGrid.propTypes = {
   images: PropTypes.arrayOf(PropTypes.object),
   isLoading: PropTypes.bool,
   error: PropTypes.bool,
+  favoritesView: PropTypes.bool.isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.object).isRequired,
+  saveToFavorites: PropTypes.func.isRequired,
+  deleteFromFavorites: PropTypes.func.isRequired,
 };
 
 export default ImagesGrid;

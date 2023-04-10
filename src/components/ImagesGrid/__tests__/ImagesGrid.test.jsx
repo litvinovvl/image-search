@@ -14,6 +14,10 @@ const props = {
   isLoadding: false,
   error: false,
   images,
+  favoritesView: false,
+  favorites: [],
+  saveToFavorites: jest.fn(),
+  deleteFromFavorites: jest.fn(),
 };
 
 describe('App', () => {
@@ -44,6 +48,14 @@ describe('App', () => {
   });
 
   it('should render ImagesGrid properly when images loaded', () => {
+    const component = shallow(
+      <ImagesGrid {...props} favoritesView images={images} favorites={images} />,
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  it('should render ImagesGrid in favorites mode properly', () => {
     const component = shallow(<ImagesGrid {...props} />);
 
     expect(component).toMatchSnapshot();
@@ -63,7 +75,7 @@ describe('App', () => {
   it('should render big image in modal on image click', () => {
     const component = shallow(<ImagesGrid {...props} />);
 
-    component.find('div[role="button"]').at(0).simulate('click');
+    component.find('.image').at(0).simulate('click');
     component.update();
 
     const modal = component.find(ReactModal);
@@ -71,25 +83,21 @@ describe('App', () => {
     expect(modal.prop('children')).toMatchSnapshot();
   });
 
-  it('should render big image in modal on image press enter', () => {
+  it('should save to favorites', () => {
     const component = shallow(<ImagesGrid {...props} />);
 
-    component.find('div[role="button"]').at(0).simulate('keyPress', { key: 'Enter' });
-    component.update();
+    component.find('.favorite-btn').at(0).simulate('click');
 
-    const modal = component.find(ReactModal);
-    expect(modal.prop('isOpen')).toBe(true);
-    expect(modal.prop('children')).toMatchSnapshot();
+    expect(props.saveToFavorites).toHaveBeenCalledWith(props.images[0]);
   });
 
-  it('should not render big image in modal on image press not enter', () => {
-    const component = shallow(<ImagesGrid {...props} />);
+  it('should delete from favorites', () => {
+    const component = shallow(
+      <ImagesGrid {...props} favoritesView images={images} favorites={images} />,
+    );
 
-    component.find('div[role="button"]').at(0).simulate('keyPress', { key: 'Shift' });
-    component.update();
+    component.find('.delete-btn').at(0).simulate('click');
 
-    const modal = component.find(ReactModal);
-    expect(modal.prop('isOpen')).toBe(false);
-    expect(modal.prop('children')).toBe(false);
+    expect(props.deleteFromFavorites).toHaveBeenCalledWith(props.images[0].id);
   });
 });

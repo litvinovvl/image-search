@@ -8,11 +8,16 @@ exports[`App should render App properly 1`] = `
     fullScreen={true}
     isLoading={false}
     onSubmit={[Function]}
+    toggleFavorites={[Function]}
   />
   <ImagesGrid
+    deleteFromFavorites={[Function]}
     error={false}
+    favorites={Array []}
+    favoritesView={false}
     images={null}
     isLoading={false}
+    saveToFavorites={[Function]}
   />
 </div>
 `;
