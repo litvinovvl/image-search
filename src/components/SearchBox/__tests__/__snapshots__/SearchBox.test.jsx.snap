@@ -18,7 +18,7 @@ exports[`App should render SearchBox properly 1`] = `
   </button>
   <button
     className="favorites-btn"
-    onClick={[MockFunction]}
+    onClick={[Function]}
     type="button"
   >
     Manage Favorites
@@ -44,7 +44,7 @@ exports[`App should render SearchBox properly when images loaded 1`] = `
   </button>
   <button
     className="favorites-btn"
-    onClick={[MockFunction]}
+    onClick={[Function]}
     type="button"
   >
     Manage Favorites

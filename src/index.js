@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ReactModal from 'react-modal';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const root = document.getElementById('root');
 
@@ -11,7 +12,9 @@ ReactModal.setAppElement(root);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </React.StrictMode>,
   root,
 );

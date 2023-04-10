@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 import './style.scss';
 
 const SearchBox = ({
-  isLoading, fullScreen, onSubmit, openFavorites,
+  isLoading, fullScreen, onSubmit,
 }) => {
   const [query, setQuery] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    navigate('/');
     onSubmit(query);
   };
 
@@ -26,7 +29,7 @@ const SearchBox = ({
       <button type="submit" className="search-btn">
         {isLoading ? 'Searching' : 'Search'}
       </button>
-      <button type="button" className="favorites-btn" onClick={openFavorites}>
+      <button type="button" className="favorites-btn" onClick={() => navigate('/favorites')}>
         Manage Favorites
       </button>
     </form>
@@ -42,7 +45,6 @@ SearchBox.propTypes = {
   fullScreen: PropTypes.bool,
   isLoading: PropTypes.bool,
   onSubmit: PropTypes.func.isRequired,
-  openFavorites: PropTypes.func.isRequired,
 };
 
 export default SearchBox;

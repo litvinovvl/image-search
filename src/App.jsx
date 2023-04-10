@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 import SearchBox from './components/SearchBox';
 import ImagesGrid from './components/ImagesGrid';
@@ -13,18 +14,11 @@ const App = () => {
   const [error, setError] = useState(false);
   const [images, setImages] = useState(null);
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
-  const [isFavoritesOpened, setIsFavoritesOpened] = useState(false);
-  const shouldRenderImages = Boolean(images);
-
-  useEffect(() => {
-    if (isFavoritesOpened) {
-      setImages(favorites);
-    }
-  }, [favorites, isFavoritesOpened]);
+  const location = useLocation();
+  const shouldRenderImages = Boolean(isLoading || images || location.pathname !== '/');
 
   const searchImages = async (query) => {
-    if (!isFavoritesOpened && lastQuery === query) return;
-    if (isFavoritesOpened) setIsFavoritesOpened(false);
+    if (lastQuery === query) return;
 
     setError(false);
     setIsLoading(true);
@@ -42,10 +36,6 @@ const App = () => {
     }
   };
 
-  const openFavorites = () => {
-    setIsFavoritesOpened(true);
-  };
-
   const saveToFavorites = (image) => (e) => {
     e.stopPropagation();
     setFavorites([...favorites, image]);
@@ -56,23 +46,43 @@ const App = () => {
     setFavorites(favorites.filter((image) => image.id !== id));
   };
 
+  const router = (
+    <Routes>
+      <Route
+        path="/"
+        element={(
+          <ImagesGrid
+            images={images}
+            isLoading={isLoading}
+            error={error}
+            favorites={favorites}
+            saveToFavorites={saveToFavorites}
+          />
+        )}
+      />
+      <Route
+        path="/favorites"
+        element={(
+          <ImagesGrid
+            isLoading={isLoading}
+            error={error}
+            favoritesView
+            favorites={favorites}
+            deleteFromFavorites={deleteFromFavorites}
+          />
+        )}
+      />
+    </Routes>
+  );
+
   return (
     <div className="wrapper">
       <SearchBox
         fullScreen={!shouldRenderImages}
         isLoading={isLoading}
         onSubmit={searchImages}
-        openFavorites={openFavorites}
       />
-      <ImagesGrid
-        images={images}
-        isLoading={isLoading}
-        error={error}
-        favoritesView={isFavoritesOpened}
-        favorites={favorites}
-        saveToFavorites={saveToFavorites}
-        deleteFromFavorites={deleteFromFavorites}
-      />
+      {router}
     </div>
   );
 };

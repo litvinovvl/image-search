@@ -1,23 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App should render App properly 1`] = `
-<div
-  className="wrapper"
->
-  <SearchBox
-    fullScreen={true}
-    isLoading={false}
-    onSubmit={[Function]}
-    toggleFavorites={[Function]}
-  />
-  <ImagesGrid
-    deleteFromFavorites={[Function]}
-    error={false}
-    favorites={Array []}
-    favoritesView={false}
-    images={null}
-    isLoading={false}
-    saveToFavorites={[Function]}
-  />
-</div>
+<BrowserRouter>
+  <div
+    className="wrapper"
+  >
+    <SearchBox
+      fullScreen={true}
+      isLoading={false}
+      onSubmit={[Function]}
+    />
+    <Routes>
+      <Route
+        element={
+          <ImagesGrid
+            deleteFromFavorites={[Function]}
+            error={false}
+            favorites={Array []}
+            favoritesView={false}
+            images={null}
+            isLoading={false}
+            saveToFavorites={[Function]}
+          />
+        }
+        path="/"
+      />
+      <Route
+        element={
+          <ImagesGrid
+            deleteFromFavorites={[Function]}
+            error={false}
+            favorites={Array []}
+            favoritesView={true}
+            images={Array []}
+            isLoading={false}
+            saveToFavorites={[Function]}
+          />
+        }
+        path="/favorites"
+      />
+    </Routes>
+  </div>
+</BrowserRouter>
 `;

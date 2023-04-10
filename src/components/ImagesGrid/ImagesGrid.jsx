@@ -37,11 +37,13 @@ const ImagesGrid = ({
       );
     }
 
-    if (images && images.length) {
+    const data = favoritesView ? favorites : images;
+
+    if (data && data.length) {
       return (
         <div className="images-wrapper">
           {
-            images.map((image) => {
+            data.map((image) => {
               const saved = favorites.find(({ id }) => id === image.id);
               return (
                 <div
@@ -116,18 +118,22 @@ const ImagesGrid = ({
 
 ImagesGrid.defaultProps = {
   images: [],
+  favorites: [],
+  favoritesView: false,
   isLoading: false,
   error: false,
+  saveToFavorites: () => {},
+  deleteFromFavorites: () => {},
 };
 
 ImagesGrid.propTypes = {
   images: PropTypes.arrayOf(PropTypes.object),
   isLoading: PropTypes.bool,
   error: PropTypes.bool,
-  favoritesView: PropTypes.bool.isRequired,
-  favorites: PropTypes.arrayOf(PropTypes.object).isRequired,
-  saveToFavorites: PropTypes.func.isRequired,
-  deleteFromFavorites: PropTypes.func.isRequired,
+  favoritesView: PropTypes.bool,
+  favorites: PropTypes.arrayOf(PropTypes.object),
+  saveToFavorites: PropTypes.func,
+  deleteFromFavorites: PropTypes.func,
 };
 
 export default ImagesGrid;
